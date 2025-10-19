@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 echo "🔍 Running pre-commit checks..."
 
 # Get staged JavaScript files
@@ -17,7 +14,7 @@ echo ""
 
 # Run ESLint on staged files
 echo "🔍 Running ESLint..."
-echo "$STAGED_FILES" | xargs npx eslint --max-warnings 0
+echo "$STAGED_FILES" | xargs npx eslint --max-warnings 0 --no-warn-ignored
 
 # Check if ESLint passed
 if [ $? -ne 0 ]; then

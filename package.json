@@ -16,9 +16,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:check": "eslint . --max-warnings 0",
+    "lint": "eslint . --no-warn-ignored",
+    "lint:fix": "eslint . --fix --no-warn-ignored",
+    "lint:check": "eslint . --max-warnings 0 --no-warn-ignored",
     "prepare": "husky"
   },
   "devDependencies": {
