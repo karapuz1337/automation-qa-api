@@ -9,7 +9,7 @@ export default [
             "augment/",
             ".husky/",
             "*.min.js",
-            "*.config.js",
+            "eslint.config.js",
             "dist/",
             "build/",
             "coverage/",
