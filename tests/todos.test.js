@@ -3,7 +3,7 @@ import axios from "axios";
 import { PLACEHOLDER_URL } from "../src/constants/api.js";
 import { validTodo, todoWithMaxLengthTitle } from "../src/testData/todos.js";
 
-// Hardcore valid todo Id
+// Hardcoded valid todo ID
 const EXISTING_TODO_ID = 1;
 
 describe("PUT /todos", () => {

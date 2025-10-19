@@ -1,10 +1,13 @@
 import { describe, expect, test } from "@jest/globals";
 import axios from "axios";
 import { PLACEHOLDER_URL } from "../src/constants/api.js";
-import { validPost, boundaryPosts } from "../src/testData/posts.js";
+import {
+  validPost,
+  postWithMaxLengthTitle,
+  postWithEmptyTitle,
+  postWithEmptyBody
+} from "../src/testData/posts.js";
 
-// Use boundary testing bodies from boundaryPosts
-const { maxLengthTitle, emptyTitle, emptyBody } = boundaryPosts;
 
 describe("POST /posts", () => {
   test("Should create a post with valid data", async() => {
@@ -23,48 +26,47 @@ describe("POST /posts", () => {
 
   });
 
-  test("Should successfully create a post with 255-character title (boundary value)",
-    async() => {
-      const response = await axios.post(`${PLACEHOLDER_URL}/posts`, maxLengthTitle);
-
-      // Check status
-      expect(response.status).toBe(201);
-
-      // Check if the response is correct
-      expect(response.data).toMatchObject({
-        title: maxLengthTitle.title,
-        body: maxLengthTitle.body,
-        userId: maxLengthTitle.userId,
-        id: expect.any(Number)
-      });
-    });
-
-  test("Should create a post with empty body", async() => {
-    const response = await axios.post(`${PLACEHOLDER_URL}/posts`, emptyBody);
+  test("Should successfully create a post with 255-character title (boundary value)", async() => {
+    const response = await axios.post(`${PLACEHOLDER_URL}/posts`, postWithMaxLengthTitle);
 
     // Check status
     expect(response.status).toBe(201);
 
     // Check if the response is correct
     expect(response.data).toMatchObject({
-      title: emptyBody.title,
-      body: emptyBody.body,
-      userId: emptyBody.userId,
+      title: postWithMaxLengthTitle.title,
+      body: postWithMaxLengthTitle.body,
+      userId: postWithMaxLengthTitle.userId,
+      id: expect.any(Number)
+    });
+  });
+
+  test("Should create a post with empty body", async() => {
+    const response = await axios.post(`${PLACEHOLDER_URL}/posts`, postWithEmptyBody);
+
+    // Check status
+    expect(response.status).toBe(201);
+
+    // Check if the response is correct
+    expect(response.data).toMatchObject({
+      title: postWithEmptyBody.title,
+      body: postWithEmptyBody.body,
+      userId: postWithEmptyBody.userId,
       id: expect.any(Number)
     });
   });
 
   test("Should create a post with empty title", async() => {
-    const response = await axios.post(`${PLACEHOLDER_URL}/posts`, emptyTitle);
+    const response = await axios.post(`${PLACEHOLDER_URL}/posts`, postWithEmptyTitle);
 
     // Check status
     expect(response.status).toBe(201);
 
     // Check if the response is correct
     expect(response.data).toMatchObject({
-      title: emptyTitle.title,
-      body: emptyTitle.body,
-      userId: emptyTitle.userId,
+      title: postWithEmptyTitle.title,
+      body: postWithEmptyTitle.body,
+      userId: postWithEmptyTitle.userId,
       id: expect.any(Number)
     });
   });

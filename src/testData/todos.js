@@ -9,7 +9,3 @@ export const todoWithMaxLengthTitle = {
   completed: false,
   userId: 1
 };
-
-export const boundaryTodos = {
-  maxLengthTitle: todoWithMaxLengthTitle
-};

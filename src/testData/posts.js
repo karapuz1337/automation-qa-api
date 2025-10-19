@@ -21,9 +21,3 @@ export const postWithEmptyBody = {
   body: "",
   userId: 1
 };
-
-export const boundaryPosts = {
-  maxLengthTitle: postWithMaxLengthTitle,
-  emptyTitle: postWithEmptyTitle,
-  emptyBody: postWithEmptyBody
-};

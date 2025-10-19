@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, test } from "@jest/globals";
 import axios from "axios";
 import { PLACEHOLDER_URL } from "../src/constants/api.js";
 
-describe("Comments API", () => {
+describe("GET /comments", () => {
   let availableCommentIds = [];
   let randomCommentId;
 
@@ -18,7 +18,7 @@ describe("Comments API", () => {
 
   });
 
-  test("GET /comments - Should get all comments", async() => {
+  test("Should get all comments", async() => {
     const response = await axios.get(`${PLACEHOLDER_URL}/comments`);
 
     // Check status
