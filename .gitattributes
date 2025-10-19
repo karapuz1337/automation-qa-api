@@ -1,4 +1,0 @@
-# Keep LF line endings for shell scripts (required for Git Bash/Husky)
-*.sh text eol=lf
-.husky/* text eol=lf
-eslint.config.js text eol=lf
