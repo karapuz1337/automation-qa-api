@@ -15,7 +15,8 @@
   "author": "",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:check": "eslint . --max-warnings 0",
