@@ -3,10 +3,11 @@ import axios from "axios";
 import { PLACEHOLDER_URL } from "../src/constants/api.js";
 import { validTodo, todoWithMaxLengthTitle } from "../src/testData/todos.js";
 
+// Hardcore valid todo Id
+const EXISTING_TODO_ID = 1;
+
 describe("PUT /todos", () => {
   test("Should update the todo with valid data", async() => {
-    // Hardcore valid todo Id
-    const EXISTING_TODO_ID = 1;
     const response = await axios.put(`${PLACEHOLDER_URL}/todos/${EXISTING_TODO_ID}`, validTodo);
 
     // Check status code
@@ -22,7 +23,7 @@ describe("PUT /todos", () => {
   });
 
   test("Should update the todo with max length title", async() => {
-    const response = await axios.put(`${PLACEHOLDER_URL}/todos/1`, todoWithMaxLengthTitle);
+    const response = await axios.put(`${PLACEHOLDER_URL}/todos/${EXISTING_TODO_ID}`, todoWithMaxLengthTitle);
 
     // Check status code
     expect(response.status).toBe(200);
