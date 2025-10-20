@@ -18,7 +18,7 @@ describe("PUT /todos", () => {
       title: validTodo.title,
       completed: validTodo.completed,
       userId: validTodo.userId,
-      id: expect.any(Number)
+      id: EXISTING_TODO_ID
     });
   });
 
@@ -33,7 +33,7 @@ describe("PUT /todos", () => {
       title: todoWithMaxLengthTitle.title,
       completed: todoWithMaxLengthTitle.completed,
       userId: todoWithMaxLengthTitle.userId,
-      id: expect.any(Number)
+      id: EXISTING_TODO_ID
     });
   });
 

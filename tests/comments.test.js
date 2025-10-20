@@ -49,6 +49,9 @@ describe("GET /comments", () => {
     // Check status
     expect(response.status).toBe(200);
 
+    // Check that response is an empty object
+      expect(response.data).toEqual({})
+
     // DEBUG: Log which ID was deleted
     // eslint-disable-next-line
     console.log(`Deleted comment ID: ${randomCommentId}`);

@@ -8,6 +8,9 @@ import {
   postWithEmptyBody
 } from "../src/testData/posts.js";
 
+// Hardcoded the expected post ID. (JsonPlaceholderAPI always returns id: 101 for a new post)
+const EXPECTED_POST_ID = 101
+
 
 describe("POST /posts", () => {
   test("Should create a post with valid data", async() => {
@@ -21,7 +24,7 @@ describe("POST /posts", () => {
       title: validPost.title,
       body: validPost.body,
       userId: validPost.userId,
-      id: expect.any(Number)
+      id: EXPECTED_POST_ID
     });
 
   });
@@ -37,7 +40,7 @@ describe("POST /posts", () => {
       title: postWithMaxLengthTitle.title,
       body: postWithMaxLengthTitle.body,
       userId: postWithMaxLengthTitle.userId,
-      id: expect.any(Number)
+      id: EXPECTED_POST_ID
     });
   });
 
@@ -52,7 +55,7 @@ describe("POST /posts", () => {
       title: postWithEmptyBody.title,
       body: postWithEmptyBody.body,
       userId: postWithEmptyBody.userId,
-      id: expect.any(Number)
+      id: EXPECTED_POST_ID
     });
   });
 
@@ -67,7 +70,7 @@ describe("POST /posts", () => {
       title: postWithEmptyTitle.title,
       body: postWithEmptyTitle.body,
       userId: postWithEmptyTitle.userId,
-      id: expect.any(Number)
+      id: EXPECTED_POST_ID
     });
   });
 });
