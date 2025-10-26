@@ -1,12 +1,12 @@
 import { describe, expect, test } from "@jest/globals";
 import axios from "axios";
-import { PLACEHOLDER_URL } from "../src/constants/api.js";
+import { PLACEHOLDER_URL } from "../../src/constants/api.js";
 import {
   validPost,
   postWithMaxLengthTitle,
   postWithEmptyTitle,
   postWithEmptyBody
-} from "../src/testData/posts.js";
+} from "../testData/posts.js";
 
 // Hardcoded the expected post ID. (JsonPlaceholderAPI always returns id: 101 for a new post)
 const EXPECTED_POST_ID = 101

@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, test } from "@jest/globals";
 import axios from "axios";
-import { PLACEHOLDER_URL } from "../src/constants/api.js";
+import { PLACEHOLDER_URL } from "../../src/constants/api.js";
 
 describe("GET /comments", () => {
   let availableCommentIds = [];

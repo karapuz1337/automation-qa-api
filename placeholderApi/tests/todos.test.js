@@ -1,7 +1,7 @@
 import { describe, expect, test } from "@jest/globals";
 import axios from "axios";
-import { PLACEHOLDER_URL } from "../src/constants/api.js";
-import { validTodo, todoWithMaxLengthTitle } from "../src/testData/todos.js";
+import { PLACEHOLDER_URL } from "../../src/constants/api.js";
+import { validTodo, todoWithMaxLengthTitle } from "../testData/todos.js";
 
 // Hardcoded valid todo ID
 const EXISTING_TODO_ID = 1;
