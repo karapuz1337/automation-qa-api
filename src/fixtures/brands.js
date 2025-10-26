@@ -1,50 +1,49 @@
-// Expected responses for Brands API endpoints
-
-export const expectedGetBrandsResponse = {
-  status: "ok",
-  data: [
-    {
-      id: 1,
-      title: "Audi",
-      logoFilename: "audi.png"
-    },
-    {
-      id: 2,
-      title: "BMW",
-      logoFilename: "bmw.png"
-    },
-    {
-      id: 3,
-      title: "Ford",
-      logoFilename: "ford.png"
-    },
-    {
-      id: 4,
-      title: "Porsche",
-      logoFilename: "porsche.png"
-    },
-    {
-      id: 5,
-      title: "Fiat",
-      logoFilename: "fiat.png"
-    }
-  ]
+// Brand IDs
+export const BRAND_IDS = {
+  AUDI: 1,
+  BMW: 2,
+  FORD: 3,
+  PORSCHE: 4,
+  FIAT: 5
 };
 
-// Expected response for GET /brands/:id (example for BMW)
-export const expectedGetBrandByIdResponse = {
-  status: "ok",
-  data: {
-    id: 2,
+// Individual brand objects
+export const BRANDS = {
+  AUDI: {
+    id: BRAND_IDS.AUDI,
+    title: "Audi",
+    logoFilename: "audi.png"
+  },
+  BMW: {
+    id: BRAND_IDS.BMW,
     title: "BMW",
     logoFilename: "bmw.png"
+  },
+  FORD: {
+    id: BRAND_IDS.FORD,
+    title: "Ford",
+    logoFilename: "ford.png"
+  },
+  PORSCHE: {
+    id: BRAND_IDS.PORSCHE,
+    title: "Porsche",
+    logoFilename: "porsche.png"
+  },
+  FIAT: {
+    id: BRAND_IDS.FIAT,
+    title: "Fiat",
+    logoFilename: "fiat.png"
   }
 };
 
-// Schema for validating any brand object structure
-export const brandSchema = {
-  id: expect.any(Number),
-  title: expect.any(String),
-  logoFilename: expect.any(String)
+// Expected responses for Brands API endpoints
+export const expectedGetBrandsResponse = {
+  status: "ok",
+  data: [
+    BRANDS.AUDI,
+    BRANDS.BMW,
+    BRANDS.FORD,
+    BRANDS.PORSCHE,
+    BRANDS.FIAT
+  ]
 };
-

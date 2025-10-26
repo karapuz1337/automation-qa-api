@@ -9,7 +9,7 @@ import {
 } from "../testData/posts.js";
 
 // Hardcoded the expected post ID. (JsonPlaceholderAPI always returns id: 101 for a new post)
-const EXPECTED_POST_ID = 101
+const EXPECTED_POST_ID = 101;
 
 
 describe.skip("POST /posts", () => {
