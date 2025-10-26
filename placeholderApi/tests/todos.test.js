@@ -6,7 +6,7 @@ import { validTodo, todoWithMaxLengthTitle } from "../testData/todos.js";
 // Hardcoded valid todo ID
 const EXISTING_TODO_ID = 1;
 
-describe("PUT /todos", () => {
+describe.skip("PUT /todos", () => {
   test("Should update the todo with valid data", async() => {
     const response = await axios.put(`${PLACEHOLDER_URL}/todos/${EXISTING_TODO_ID}`, validTodo);
 

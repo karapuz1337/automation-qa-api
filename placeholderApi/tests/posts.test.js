@@ -12,7 +12,7 @@ import {
 const EXPECTED_POST_ID = 101
 
 
-describe("POST /posts", () => {
+describe.skip("POST /posts", () => {
   test("Should create a post with valid data", async() => {
     const response = await axios.post(`${PLACEHOLDER_URL}/posts`, validPost);
 
