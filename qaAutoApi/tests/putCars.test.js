@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeEach, afterEach } from "@jest/globals";
 import CarsController from "../controllers/CarsController.js";
 import { createAxiosClient } from "../helpers/axiosClient.js";
-import {setupAuth, cleanupAuth, waitForRateLimit} from "../helpers/authHelpers.js";
+import { setupAuth, cleanupAuth, waitForRateLimit } from "../helpers/authHelpers.js";
 import { BRAND_IDS, BRANDS } from "../../src/fixtures/brands.js";
 import { MODELS, MODEL_IDS } from "../../src/fixtures/models.js";
 
@@ -20,14 +20,14 @@ describe("PUT /cars/:id", () => {
     ({ authController } = await setupAuth(client));
   });
 
-    // Delete each created user
-    afterEach(async() => {
-        if (authController) {
-            await cleanupAuth(authController);
-        }
-        // Add delay for each test to avoid rate limiting
-        await waitForRateLimit();
-    });
+  // Delete each created user
+  afterEach(async() => {
+    if (authController) {
+      await cleanupAuth(authController);
+    }
+    // Add delay for each test to avoid rate limiting
+    await waitForRateLimit();
+  });
 
   test("Should update car with valid data", async() => {
     // Step 1: Create a car
