@@ -15,7 +15,10 @@ describe("GET /cars/:id", () => {
   });
 
   afterEach(async() => {
-    await cleanupAuth(authController);
+    // Only cleanup if authController exists and hasn't been deleted
+    if (authController) {
+      await cleanupAuth(authController);
+    }
   });
 
   // ========== POSITIVE TESTS ==========
@@ -63,31 +66,33 @@ describe("GET /cars/:id", () => {
   });
 
   test("Should return 404 when trying to get another user's car", async() => {
-    // Step 1: Create a car with current user
+    // Step 1: User A creates a car
     const carData = {
       carBrandId: BRAND_IDS.BMW,
       carModelId: MODEL_IDS.BMW_X5,
       mileage: 2000
     };
 
-    // Step 2: Post a car with current user
     const postResponse = await carsController.postCar(carData);
     const carId = postResponse.data.data.id;
 
-    // Step 3: Logout current user
+    expect(postResponse.status).toBe(201);
+
+    // Step 2: Delete User A
     await cleanupAuth(authController);
+    authController = null; // Mark as deleted so afterEach skips cleanup
 
-    // Step 4: Create a NEW user
-    const { authController : authController2 } = await setupAuth(client);
+    // Step 3: Create User B
+    const { authController: authControllerB } = await setupAuth(client);
 
-    // Step 5: Try to get the first user's car
+    // Step 4: User B tries to get User A's car
     const getResponse = await carsController.getCarById(carId);
 
-    // Step 6: Should return 404 (not authorized to see other user's cars)
+    // Step 5: Should return 404 (User B can't access User A's car)
     expect(getResponse.status).toBe(404);
     expect(getResponse.statusText).toBe("Not Found");
 
-    // Step 7: Logout the new user
-    await cleanupAuth(authController2);
+    // Step 6: Clean up User B
+    await cleanupAuth(authControllerB);
   });
 });

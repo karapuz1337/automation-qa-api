@@ -42,3 +42,9 @@ export async function cleanupAuth(authController) {
     throw new Error(`User deletion failed: ${deleteUserResponse.status} - ${deleteUserResponse.data.message}`);
   }
 }
+
+// Add delay to avoid rate limiting
+export async function waitForRateLimit() {
+    // 30 requests/minute = 1 request per 2 seconds
+    await new Promise(resolve => setTimeout(resolve, 2000));
+}

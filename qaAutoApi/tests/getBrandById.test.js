@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeEach, afterEach } from "@jest/globals";
 import CarsController from "../controllers/CarsController.js";
 import { createAxiosClient } from "../helpers/axiosClient.js";
-import { setupAuth, cleanupAuth } from "../helpers/authHelpers.js";
+import {setupAuth, cleanupAuth, waitForRateLimit} from "../helpers/authHelpers.js";
 import { BRAND_IDS } from "../../src/fixtures/brands.js";
 
 describe("GET /brands/:id", () => {
@@ -19,10 +19,14 @@ describe("GET /brands/:id", () => {
     ({ authController } = await setupAuth(client));
   });
 
-  // Delete each created user
-  afterEach(async() => {
-    await cleanupAuth(authController);
-  });
+    // Delete each created user
+    afterEach(async() => {
+        if (authController) {
+            await cleanupAuth(authController);
+        }
+        // Add delay for each test to avoid rate limiting
+        await waitForRateLimit();
+    });
 
   // Positive test cases
   test("Should get first brand (Audi)", async() => {
