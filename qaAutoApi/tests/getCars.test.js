@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeEach, afterEach } from "@jest/globals";
 import CarsController from "../controllers/CarsController.js";
 import { createAxiosClient } from "../helpers/axiosClient.js";
-import { setupAuth, cleanupAuth } from "../helpers/authHelpers.js";
+import {setupAuth, cleanupAuth, waitForRateLimit} from "../helpers/authHelpers.js";
 
 describe("GET /cars", () => {
   const client = createAxiosClient();
@@ -12,9 +12,14 @@ describe("GET /cars", () => {
     ({ authController } = await setupAuth(client));
   });
 
-  afterEach(async() => {
-    await cleanupAuth(authController);
-  });
+    // Delete each created user
+    afterEach(async() => {
+        if (authController) {
+            await cleanupAuth(authController);
+        }
+        // Add delay for each test to avoid rate limiting
+        await waitForRateLimit();
+    });
 
   test("Should return empty array for new user with no cars", async() => {
     const response = await carsController.getCars();

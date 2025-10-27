@@ -45,6 +45,6 @@ export async function cleanupAuth(authController) {
 
 // Add delay to avoid rate limiting
 export async function waitForRateLimit() {
-    // 30 requests/minute = 1 request per 2 seconds
-    await new Promise(resolve => setTimeout(resolve, 2000));
+  // 30 requests/minute = 1 request per 2 seconds
+  await new Promise(resolve => setTimeout(resolve, 2000));
 }

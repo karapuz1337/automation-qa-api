@@ -1,7 +1,7 @@
 import { describe, expect, test, beforeEach, afterEach } from "@jest/globals";
 import CarsController from "../controllers/CarsController.js";
 import { createAxiosClient } from "../helpers/axiosClient.js";
-import { setupAuth, cleanupAuth } from "../helpers/authHelpers.js";
+import {setupAuth, cleanupAuth, waitForRateLimit} from "../helpers/authHelpers.js";
 import { BRANDS, BRAND_IDS } from "../../src/fixtures/brands.js";
 import { MODELS, MODEL_IDS } from "../../src/fixtures/models.js";
 
@@ -14,12 +14,14 @@ describe("GET /cars/:id", () => {
     ({ authController } = await setupAuth(client));
   });
 
-  afterEach(async() => {
-    // Only cleanup if authController exists and hasn't been deleted
-    if (authController) {
-      await cleanupAuth(authController);
-    }
-  });
+    // Delete each created user
+    afterEach(async() => {
+        if (authController) {
+            await cleanupAuth(authController);
+        }
+        // Add delay for each test to avoid rate limiting
+        await waitForRateLimit();
+    });
 
   // ========== POSITIVE TESTS ==========
 
@@ -80,6 +82,7 @@ describe("GET /cars/:id", () => {
 
     // Step 2: Delete User A
     await cleanupAuth(authController);
+    // eslint-disable-next-line require-atomic-updates
     authController = null; // Mark as deleted so afterEach skips cleanup
 
     // Step 3: Create User B
