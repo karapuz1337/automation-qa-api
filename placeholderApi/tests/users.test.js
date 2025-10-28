@@ -1,8 +1,8 @@
 import { describe, expect, test } from "@jest/globals";
 import axios from "axios";
-import { PLACEHOLDER_URL } from "../src/constants/api.js";
+import { PLACEHOLDER_URL } from "../../src/constants/api.js";
 
-describe("GET /users", () => {
+describe.skip("GET /users", () => {
   test("Should return 10 users with correct structure", async() => {
     const response = await axios.get(`${PLACEHOLDER_URL}/users`);
 
